@@ -1,18 +1,26 @@
+
 print("Student Grade Calculator")
 
 name = input("Enter student name: ")
 
-mark1 = float(input("Enter marks for Subject 1: "))
-mark2 = float(input("Enter marks for Subject 2: "))
-mark3 = float(input("Enter marks for Subject 3: "))
+marks = []
 
-total = mark1 + mark2 + mark3
-average = total / 3
+for i in range(1, 4):
+    while True:
+        try:
+            mark = float(input(f"Enter marks for Subject {i} (0-100): "))
 
-print("\n--- Student Results ---")
-print("Name:", name)
-print("Total Marks:", total)
-print("Average Marks:", round(average, 2))
+            if 0 <= mark <= 100:
+                marks.append(mark)
+                break
+            else:
+                print("Invalid marks! Enter a value between 0 and 100.")
+
+        except ValueError:
+            print("Invalid input! Please enter a number.")
+
+total = sum(marks)
+average = total / len(marks)
 
 if average >= 90:
     grade = "A"
@@ -25,4 +33,8 @@ elif average >= 35:
 else:
     grade = "F"
 
+print("\n--- Student Results ---")
+print("Name:", name)
+print("Total Marks:", total)
+print("Average Marks:", round(average, 2))
 print("Grade:", grade)
